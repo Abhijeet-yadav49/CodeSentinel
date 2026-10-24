@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8f6">
+  <meta name="description" content="CodeSentinel statically analyzes Python source for common security and code-quality risks.">
+  <title>CodeSentinel — Python Code Intelligence</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="/"><span class="brand-mark">CS</span><span>Code<span class="brand-accent">Sentinel</span><small>PYTHON STATIC ANALYSIS</small></span></a>
+    <nav><a href="#how-it-works">How it works</a><span class="status"><i></i> Rules engine online</span></nav>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="eyebrow"><span class="eyebrow-line"></span> DEVELOPER SECURITY TOOLKIT <span class="version">V0.1.0</span></div>
+      <h1>Catch risky patterns<br>before they <span>ship.</span></h1>
+      <p class="hero-copy">A lightweight, AST-powered Python analyzer that surfaces suspicious code patterns, explains the risk, and points you toward a safer fix.</p>
+      <div class="hero-tags"><span>AST-based</span><span>Deterministic rules</span><span>Source is never executed</span></div>
+    </section>
+
+    <section class="workspace" aria-label="Code analysis workspace">
+      <div class="workspace-head"><div><span class="section-kicker">01 / INPUT</span><h2>Inspect your Python</h2></div><div class="input-actions"><button class="button button-quiet" id="load-sample">Load sample</button><label class="button button-quiet upload-button" for="file-input">Upload .py</label><input id="file-input" type="file" accept=".py,text/x-python,text/plain" hidden><button class="button button-primary" id="analyze-button"><span class="button-icon">⌁</span> Analyze code <span class="button-arrow">→</span></button></div></div>
+      <div class="editor-shell"><div class="editor-bar"><div class="traffic"><i></i><i></i><i></i></div><span id="filename">untitled.py</span><span class="editor-language">PYTHON</span></div><div class="editor-body"><div class="line-numbers" id="line-numbers">1</div><textarea id="code-input" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="Python source code" placeholder="Paste Python source here...">import hashlib
+import pickle
+import subprocess
+
+API_KEY = "sk_live_replace_me"
+
+def run_query(user_input, filters=[]):
+    cursor.execute(f"SELECT * FROM users WHERE name = '{user_input}'")
+    return eval(user_input)
+
+def load_payload(data):
+    return pickle.loads(data)
+
+def run_command(command):
+    return subprocess.run(command, shell=True, check=False)
+
+def fingerprint(value):
+    return hashlib.md5(value.encode()).hexdigest()
+
+try:
+    print("ready")
+except:
+    pass
+</textarea></div><div class="editor-footer"><span><i class="dot dot-lime"></i> Sent to server only when analyzed</span><span id="line-count">19 lines</span><span>UTF-8</span></div></div>
+      <div class="privacy-note"><span class="lock-icon" aria-hidden="true">i</span><span><strong>Designed for safe inspection.</strong> Your source is sent to this server for analysis as text. CodeSentinel does not import or execute it.</span></div>
+    </section>
+
+    <section class="results" id="results-section" aria-live="polite">
+      <div class="results-heading"><div><span class="section-kicker">02 / FINDINGS</span><h2>Analysis report</h2></div><div class="report-actions"><span id="analysis-status" class="report-status">Sample loaded · not yet analyzed</span><button class="button button-quiet" id="export-json" disabled>Export JSON ↗</button></div></div>
+      <div class="metric-grid">
+        <div class="metric-card metric-total"><span>Total findings</span><strong id="metric-total">—</strong><small>Across configured rules</small></div>
+        <div class="metric-card"><span>Critical</span><strong id="metric-critical" class="text-critical">—</strong><small>Immediate review</small></div>
+        <div class="metric-card"><span>High</span><strong id="metric-high" class="text-high">—</strong><small>Prioritize remediation</small></div>
+        <div class="metric-card"><span>Lines scanned</span><strong id="metric-lines">—</strong><small>Source line count</small></div>
+      </div>
+      <div class="findings-toolbar"><div><h3>Detected patterns</h3><p id="findings-subtitle">Run an analysis to populate the report.</p></div><div class="filter-wrap"><label for="severity-filter">Filter</label><select id="severity-filter"><option value="all">All severities</option><option value="critical">Critical</option><option value="high">High</option><option value="medium">Medium</option><option value="low">Low</option><option value="info">Info</option></select></div></div>
+      <div id="findings-list" class="findings-list"><div class="empty-state"><div class="empty-icon">⌕</div><h3>Your report starts here</h3><p>Analyze the sample or paste your own Python code to see line-level findings and recommended fixes.</p></div></div>
+      <p class="disclaimer" id="disclaimer">Static analysis is heuristic. Findings can be false positives or false negatives and should be reviewed in context.</p>
+    </section>
+
+    <section class="how-section" id="how-it-works"><div><span class="section-kicker">03 / UNDER THE HOOD</span><h2>Small tool. Real engineering.</h2><p>CodeSentinel parses source into Python's AST and applies explicit, testable rules. It never executes the inspected code.</p></div><div class="how-grid"><article><span class="how-number">01</span><h3>Parse</h3><p>Convert source text into a syntax tree. Syntax errors are reported before rules run.</p></article><article><span class="how-number">02</span><h3>Inspect</h3><p>Walk calls, assignments, exception handlers, and function defaults for known risky patterns.</p></article><article><span class="how-number">03</span><h3>Explain</h3><p>Return rule IDs, severity, line numbers, snippets, and actionable remediation guidance.</p></article></div></section>
+    <footer><a class="brand footer-brand" href="/"><span class="brand-mark">CS</span><span>Code<span class="brand-accent">Sentinel</span></span></a><span class="footer-note">Built for clearer code reviews.</span><span class="developer-credit">Developed by <strong>ABHIJEET SINGH</strong></span></footer>
+  </main>
+  <script src="/static/app.js" defer></script>
+</body>
+</html>

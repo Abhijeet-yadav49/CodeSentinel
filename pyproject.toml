@@ -1,0 +1,17 @@
+[project]
+name = "codesentinel"
+version = "0.1.0"
+description = "AST-based static analysis for common Python security and code-quality risks"
+requires-python = ">=3.10"
+dependencies = ["fastapi>=0.115,<1.0", "uvicorn[standard]>=0.30,<1.0"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0,<9.0", "httpx>=0.27,<1.0"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
