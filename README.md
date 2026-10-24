@@ -1,5 +1,4 @@
 # CodeSentinel
-
 **CodeSentinel** is a small, runnable Python static-analysis web app. It parses source with Python's built-in `ast` module and applies deterministic rules for common risky patterns. It does not import or execute analyzed code, and it does not call an AI service.
 
 ## Features
